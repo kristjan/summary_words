@@ -2,7 +2,7 @@ defmodule SummaryWord do
   def check(word) do
     values = String.downcase(word) |> String.to_char_list |> Enum.map(&(&1 - 96))
     [first | rest] = values
-    {beginning, last} = {Enum.take(values, length(values) - 1), List.last(values)}
+    [last | beginning] = Enum.reverse(values)
     first_sums = first == Enum.sum(rest)
     last_sums = last == Enum.sum(beginning)
     case {first_sums, last_sums} do
